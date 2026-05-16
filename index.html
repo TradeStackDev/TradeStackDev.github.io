@@ -3,133 +3,643 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adam Johnson — Web Developer | AI, WordPress &amp; eCommerce</title>
+<title>Adam Johnson — Web Developer | AI, WordPress & eCommerce</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--accent:#00d4ff;--accent2:#7c3aed;--accent3:#10b981;--text:#e2e8f0;--muted:#64748b;--dim:#1a1a2e;--mono:'IBM Plex Mono',monospace;--sans:'Syne',sans-serif; }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:var(--mono);min-height:100vh;overflow-x:hidden;}
-  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
-  .container{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}
-  header{padding:3rem 0 2rem;border-bottom:1px solid var(--border);}
-  .header-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
-  .profile-block{display:flex;align-items:center;gap:1.5rem;}
-  .avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:1.5rem;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--accent);}
-  .name-block h1{font-family:var(--sans);font-size:2rem;font-weight:800;letter-spacing:-0.02em;line-height:1;color:#fff;}
-  .name-block .title{font-size:0.75rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.4rem;}
-  .badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;}
-  .badge{font-size:0.65rem;padding:0.2rem 0.6rem;border-radius:3px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;}
-  .badge-blue{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.25);}
-  .badge-purple{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.25);}
-  .badge-green{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.25);}
-  .badge-orange{background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.25);}
-  .header-stats{display:flex;gap:2rem;flex-wrap:wrap;align-items:center;}
-  .stat{text-align:center;}
-  .stat-num{font-family:var(--sans);font-size:1.5rem;font-weight:800;color:#fff;line-height:1;}
-  .stat-label{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.25rem;}
-  .nav-bar{display:flex;gap:0;overflow-x:auto;border-bottom:1px solid var(--border);}
-  .nav-tab{padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.06em;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;text-transform:uppercase;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--mono);}
-  .nav-tab:hover{color:var(--text);}
-  .nav-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  section{padding:3rem 0;}
-  .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;}
-  .section-icon{width:28px;height:28px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
-  .section-title{font-family:var(--sans);font-size:1.1rem;font-weight:700;color:#fff;}
-  .section-count{font-size:0.7rem;color:var(--muted);margin-left:auto;}
-  .repos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;}
-  .repo-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;}
-  .repo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.2s;}
-  .repo-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-2px);}
-  .repo-card:hover::before{opacity:1;}
-  .repo-list-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem;transition:border-color 0.2s;}
-  .repo-list-item:hover{border-color:rgba(0,212,255,0.3);}
-  .repo-header{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:0.75rem;}
-  .repo-icon{font-size:1.1rem;margin-top:2px;flex-shrink:0;}
-  .repo-name{font-family:var(--sans);font-size:0.95rem;font-weight:700;color:var(--accent);line-height:1.2;}
-  .repo-visibility{font-size:0.6rem;padding:0.1rem 0.4rem;border:1px solid var(--border);border-radius:2rem;color:var(--muted);margin-top:2px;}
-  .repo-desc{font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
-  .repo-topics{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem;}
-  .topic{font-size:0.6rem;padding:0.15rem 0.5rem;background:rgba(0,212,255,0.07);color:var(--accent);border-radius:2rem;letter-spacing:0.04em;}
-  .repo-footer{display:flex;gap:1rem;align-items:center;font-size:0.7rem;color:var(--muted);}
-  .repo-lang{display:flex;align-items:center;gap:0.35rem;}
-  .lang-dot{width:8px;height:8px;border-radius:50%;}
-  .lang-python{background:#3776ab;}.lang-js{background:#f7df1e;}.lang-ts{background:#3178c6;}.lang-php{background:#777bb4;}
-  .contrib-graph{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;overflow-x:auto;}
-  .contrib-months{display:flex;gap:0;font-size:0.6rem;color:var(--muted);margin-bottom:0.5rem;padding-left:24px;}
-  .contrib-months span{flex:1;min-width:28px;}
-  .contrib-grid-wrap{display:flex;gap:4px;}
-  .contrib-days{display:flex;flex-direction:column;gap:3px;font-size:0.55rem;color:var(--muted);padding-top:2px;}
-  .contrib-days span{height:10px;line-height:10px;}
-  .contrib-weeks{display:flex;gap:3px;}
-  .contrib-week{display:flex;flex-direction:column;gap:3px;}
-  .contrib-day{width:10px;height:10px;border-radius:2px;background:#161622;transition:transform 0.1s;}
-  .contrib-day:hover{transform:scale(1.4);}
-  .c0{background:#161622;}.c1{background:#0e3a30;}.c2{background:#0d5c44;}.c3{background:#0f9060;}.c4{background:var(--accent3);}
-  .contrib-legend{display:flex;align-items:center;gap:0.5rem;font-size:0.65rem;color:var(--muted);margin-top:0.75rem;justify-content:flex-end;}
-  .contrib-total{font-size:0.75rem;color:var(--muted);margin-bottom:0.75rem;}
-  .contrib-total strong{color:var(--text);}
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;}
-  .skill-group{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;}
-  .skill-group-title{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.75rem;font-weight:600;}
-  .skill-list{display:flex;flex-direction:column;gap:0.5rem;}
-  .skill-item{display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:var(--text);}
-  .skill-bar-wrap{width:80px;height:3px;background:var(--dim);border-radius:2px;overflow:hidden;}
-  .skill-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transform-origin:left;}
-  .activity-feed{display:flex;flex-direction:column;gap:0;}
-  .activity-item{display:flex;gap:1rem;align-items:flex-start;padding:0.9rem 0;border-bottom:1px solid var(--border);font-size:0.75rem;}
-  .activity-item:last-child{border-bottom:none;}
-  .activity-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#fff;}
-  .activity-content{flex:1;line-height:1.6;}
-  .hl{color:var(--accent);font-weight:600;}
-  .repo-hl{color:#a78bfa;}
-  .activity-time{font-size:0.65rem;color:var(--muted);white-space:nowrap;}
-  .readme-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-  .readme-bar{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.25rem;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--muted);background:rgba(255,255,255,0.02);}
-  .readme-bar .dot{width:10px;height:10px;border-radius:50%;}
-  .dot-red{background:#ff5f57;}.dot-yellow{background:#febc2e;}.dot-green{background:#28c840;}
-  .readme-content{padding:1.75rem;font-size:0.8rem;line-height:1.8;color:var(--text);}
-  .readme-content h2{font-family:var(--sans);font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:0.5rem;}
-  .readme-content h3{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--accent);margin:1.5rem 0 0.5rem;}
-  .readme-content p{color:var(--muted);margin-bottom:0.75rem;}
-  .readme-content code{background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.15);border-radius:4px;padding:0.1em 0.4em;font-size:0.9em;color:var(--accent);}
-  .readme-content ul{padding-left:1.25rem;color:var(--muted);}
-  .readme-content ul li{margin-bottom:0.25rem;}
-  .stat-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin:1.25rem 0;}
-  .stat-chip{background:var(--dim);border:1px solid var(--border);border-radius:6px;padding:0.5rem 1rem;text-align:center;min-width:90px;}
-  .stat-chip-num{font-family:var(--sans);font-size:1.2rem;font-weight:800;color:var(--accent);}
-  .stat-chip-label{font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.15rem;}
-  .tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin:0.75rem 0;}
-  .tech-pill{font-size:0.7rem;padding:0.3rem 0.75rem;border-radius:3px;font-weight:600;letter-spacing:0.04em;}
-  .tp-blue{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);}
-  .tp-purple{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);}
-  .tp-green{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2);}
-  .tp-orange{background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.2);}
-  .tp-red{background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.2);}
-  .tp-yellow{background:rgba(234,179,8,0.1);color:#fde047;border:1px solid rgba(234,179,8,0.2);}
-  .layout{display:grid;grid-template-columns:1fr 280px;gap:2rem;align-items:start;}
-  @media(max-width:820px){.layout{grid-template-columns:1fr;}.repos-grid{grid-template-columns:1fr;}.skills-grid{grid-template-columns:repeat(2,1fr);}}
-  .sidebar{display:flex;flex-direction:column;gap:1rem;}
-  .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
-  .sidebar-card-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;font-weight:600;}
-  .sidebar-stat-row{display:flex;justify-content:space-between;font-size:0.75rem;padding:0.4rem 0;border-bottom:1px solid var(--border);color:var(--muted);}
-  .sidebar-stat-row:last-child{border-bottom:none;}
-  .sidebar-stat-row span:last-child{color:var(--text);font-weight:600;}
-  .lang-bar-item{margin-bottom:0.6rem;}
-  .lang-bar-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);margin-bottom:0.3rem;}
-  .lang-bar-track{height:4px;background:var(--dim);border-radius:2px;overflow:hidden;}
-  .lang-bar-fill{height:100%;border-radius:2px;}
-  .social-links{display:flex;flex-direction:column;gap:0.5rem;}
-  .social-link{display:flex;align-items:center;gap:0.6rem;font-size:0.75rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-  .social-link:hover{color:var(--accent);}
-  .tab-content{display:none;}
-  .tab-content.active{display:block;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-  .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent3);animation:pulse 2s ease infinite;margin-right:4px;}
-  .terminal-line{font-size:0.7rem;color:var(--accent3);margin-bottom:1rem;letter-spacing:0.04em;}
-  .terminal-line::before{content:'$ ';color:var(--muted);}
-  .highlight-banner{background:linear-gradient(90deg,rgba(124,58,237,0.12),rgba(0,212,255,0.08));border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:0.75rem 1.25rem;font-size:0.75rem;color:var(--text);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
-  .highlight-banner .tag{background:rgba(124,58,237,0.2);color:#a78bfa;font-size:0.6rem;padding:0.2rem 0.5rem;border-radius:3px;font-weight:600;letter-spacing:0.06em;white-space:nowrap;}
-  ::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --dim: #1a1a2e;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .profile-block { display: flex; align-items: center; gap: 1.5rem; }
+
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans);
+    font-size: 1.8rem; font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+  }
+
+  .name-block h1 {
+    font-family: var(--sans);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .name-block .title {
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  .badges {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .badge-blue { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.25); }
+  .badge-purple { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
+  .badge-green { background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.25); }
+  .badge-orange { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid rgba(251,146,60,0.25); }
+
+  .header-stats {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+  /* ─── NAV ─── */
+  .nav-bar {
+    display: flex; gap: 0; overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .nav-tab {
+    padding: 1rem 1.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-transform: uppercase;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: var(--mono);
+  }
+
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 3rem 0; animation: fadeUp 0.5s ease both; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-icon {
+    width: 28px; height: 28px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-count {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* ─── PINNED REPOS ─── */
+  .repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .repo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .repo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .repo-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
+  .repo-card:hover::before { opacity: 1; }
+
+  .repo-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .repo-icon { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+
+  .repo-name {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+
+  .repo-visibility {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .repo-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .repo-topics {
+    display: flex; flex-wrap: wrap; gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(0,212,255,0.07);
+    color: var(--accent);
+    border-radius: 2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .repo-footer {
+    display: flex; gap: 1rem; align-items: center;
+    font-size: 0.7rem; color: var(--muted);
+  }
+
+  .repo-lang { display: flex; align-items: center; gap: 0.35rem; }
+  .lang-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .lang-python { background: #3776ab; }
+  .lang-js { background: #f7df1e; }
+  .lang-ts { background: #3178c6; }
+  .lang-go { background: #00add8; }
+
+  .repo-meta { display: flex; align-items: center; gap: 0.35rem; }
+
+  /* ─── CONTRIBUTION GRAPH ─── */
+  .contrib-section { }
+
+  .contrib-graph {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .contrib-months {
+    display: flex;
+    gap: 0;
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    padding-left: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  .contrib-months span { flex: 1; min-width: 28px; }
+
+  .contrib-grid-wrap { display: flex; gap: 4px; }
+
+  .contrib-days {
+    display: flex; flex-direction: column; gap: 3px;
+    font-size: 0.55rem; color: var(--muted);
+    padding-top: 2px;
+  }
+
+  .contrib-days span { height: 10px; line-height: 10px; }
+
+  .contrib-weeks { display: flex; gap: 3px; }
+
+  .contrib-week { display: flex; flex-direction: column; gap: 3px; }
+
+  .contrib-day {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    background: #161622;
+    transition: transform 0.1s;
+    cursor: default;
+  }
+
+  .contrib-day:hover { transform: scale(1.4); }
+
+  .c0 { background: #161622; }
+  .c1 { background: #0e3a30; }
+  .c2 { background: #0d5c44; }
+  .c3 { background: #0f9060; }
+  .c4 { background: var(--accent3); }
+
+  .contrib-legend {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.65rem; color: var(--muted);
+    margin-top: 0.75rem; justify-content: flex-end;
+  }
+
+  .contrib-legend .contrib-day { cursor: default; }
+
+  .contrib-total {
+    font-size: 0.75rem; color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .contrib-total strong { color: var(--text); }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .skill-group-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .skill-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .skill-item {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.72rem; color: var(--text);
+  }
+
+  .skill-bar-wrap {
+    width: 80px; height: 3px;
+    background: var(--dim);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    animation: barGrow 1s ease both;
+    transform-origin: left;
+  }
+
+  /* ─── ACTIVITY FEED ─── */
+  .activity-feed { display: flex; flex-direction: column; gap: 0; }
+
+  .activity-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+  }
+
+  .activity-item:last-child { border-bottom: none; }
+
+  .activity-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: #fff;
+  }
+
+  .activity-content { flex: 1; line-height: 1.6; }
+  .activity-content .hl { color: var(--accent); font-weight: 600; }
+  .activity-content .repo-hl { color: #a78bfa; }
+  .activity-time { font-size: 0.65rem; color: var(--muted); white-space: nowrap; }
+
+  /* ─── README SECTION ─── */
+  .readme-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .readme-bar {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem; color: var(--muted);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .readme-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .readme-content {
+    padding: 1.75rem;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .readme-content h2 {
+    font-family: var(--sans);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .readme-content h3 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .readme-content p { color: var(--muted); margin-bottom: 0.75rem; }
+  .readme-content code {
+    background: rgba(0,212,255,0.07);
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+
+  .readme-content ul { padding-left: 1.25rem; color: var(--muted); }
+  .readme-content ul li { margin-bottom: 0.25rem; }
+
+  .stat-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin: 1.25rem 0;
+  }
+
+  .stat-chip {
+    background: var(--dim);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    min-width: 90px;
+  }
+
+  .stat-chip-num {
+    font-family: var(--sans);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-chip-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.15rem;
+  }
+
+  /* ─── TECH STACK PILLS ─── */
+  .tech-row {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .tech-pill {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .tp-blue { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+  .tp-purple { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
+  .tp-green { background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2); }
+  .tp-orange { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid rgba(251,146,60,0.2); }
+  .tp-red { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+  .tp-yellow { background: rgba(234,179,8,0.1); color: #fde047; border: 1px solid rgba(234,179,8,0.2); }
+
+  /* ─── ASIDE / SIDEBAR ─── */
+  .layout { display: grid; grid-template-columns: 1fr 280px; gap: 2rem; align-items: start; }
+
+  @media (max-width: 820px) {
+    .layout { grid-template-columns: 1fr; }
+    .repos-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .sidebar { display: flex; flex-direction: column; gap: 1rem; }
+
+  .sidebar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .sidebar-card-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .sidebar-stat-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.75rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .sidebar-stat-row:last-child { border-bottom: none; }
+  .sidebar-stat-row span:last-child { color: var(--text); font-weight: 600; }
+
+  .lang-bar-item { margin-bottom: 0.6rem; }
+  .lang-bar-label { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .lang-bar-track { height: 4px; background: var(--dim); border-radius: 2px; overflow: hidden; }
+  .lang-bar-fill { height: 100%; border-radius: 2px; animation: barGrow 1.2s ease both; }
+
+  .social-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .social-link { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .social-link:hover { color: var(--accent); }
+  .social-link .icon { width: 16px; text-align: center; }
+
+  /* ─── TABS CONTENT ─── */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes barGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .blink { animation: pulse 2s ease infinite; }
+
+  /* ─── TERMINAL LINE ─── */
+  .terminal-line {
+    font-size: 0.7rem;
+    color: var(--accent3);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .terminal-line::before { content: '$ '; color: var(--muted); }
+
+  /* ─── STATUS DOT ─── */
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent3);
+    animation: pulse 2s ease infinite;
+    margin-right: 4px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .highlight-banner {
+    background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(0,212,255,0.08));
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.75rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .highlight-banner .tag {
+    background: rgba(124,58,237,0.2);
+    color: #a78bfa;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -145,512 +655,640 @@
           <div class="title"><span class="status-dot"></span>Web Developer · AI, WordPress &amp; eCommerce</div>
           <div class="badges">
             <span class="badge badge-blue">Python · Backend</span>
-            <span class="badge badge-purple">AI / ML Systems</span>
+            <span class="badge badge-purple">AI/ML Systems</span>
             <span class="badge badge-orange">WordPress · WooCommerce</span>
             <span class="badge badge-green">Remote · East Coast</span>
           </div>
         </div>
       </div>
       <div class="header-stats">
-        <div class="stat"><div class="stat-num">14</div><div class="stat-label">Repos</div></div>
-        <div class="stat"><div class="stat-num">923</div><div class="stat-label">Commits</div></div>
-        <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Years</div></div>
-        <div class="stat"><div class="stat-num">40</div><div class="stat-label">PRs Merged</div></div>
+        <div class="stat">
+          <div class="stat-num">14</div>
+          <div class="stat-label">Repos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">923</div>
+          <div class="stat-label">Commits</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">40</div>
+          <div class="stat-label">PRs Merged</div>
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- NAV -->
+<!-- NAV TABS -->
 <div class="nav-bar container">
-  <button class="nav-tab active" onclick="switchTab('overview',this)">Overview</button>
-  <button class="nav-tab" onclick="switchTab('repositories',this)">Repositories</button>
-  <button class="nav-tab" onclick="switchTab('activity',this)">Activity</button>
-  <button class="nav-tab" onclick="switchTab('skills',this)">Skills</button>
+  <button class="nav-tab active" onclick="switchTab('overview')">Overview</button>
+  <button class="nav-tab" onclick="switchTab('repositories')">Repositories</button>
+  <button class="nav-tab" onclick="switchTab('activity')">Activity</button>
+  <button class="nav-tab" onclick="switchTab('skills')">Skills</button>
 </div>
 
-<!-- ══ OVERVIEW ══ -->
+<!-- ══ OVERVIEW TAB ══ -->
 <div id="tab-overview" class="tab-content active">
-<div class="container"><section>
-  <div class="layout">
-    <div>
-      <div class="highlight-banner">
-        <span class="tag">FULL-STACK</span>
-        6+ years building AI infrastructure, custom WordPress plugins, WooCommerce stores, and performance advertising integrations for clients worldwide.
-      </div>
+<div class="container">
+  <section>
+    <div class="layout">
 
-      <div class="readme-block">
-        <div class="readme-bar">
-          <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-          <span style="margin-left:0.5rem;">adam-johnson / README.md</span>
+      <!-- MAIN COLUMN -->
+      <div>
+
+        <!-- HIGHLIGHT BANNER -->
+        <div class="highlight-banner">
+          <span class="tag">TARGETED</span>
+          Portfolio built for Web Developer III – AI Agent Infrastructure roles. All projects directly relevant to Python backends, simulation systems, and AI tooling.
         </div>
-        <div class="readme-content">
-          <div class="terminal-line">cat README.md</div>
-          <h2>&#128075; Hey, I'm Adam Johnson</h2>
-          <p>Full-stack web developer with <strong style="color:var(--text)">6+ years</strong> of experience across AI agent infrastructure, custom WordPress development, WooCommerce eCommerce, and digital advertising integrations. I build things that are fast, scalable, and revenue-generating.</p>
-          <div class="stat-row">
-            <div class="stat-chip"><div class="stat-chip-num">6+</div><div class="stat-chip-label">Yrs Exp</div></div>
-            <div class="stat-chip"><div class="stat-chip-num">50+</div><div class="stat-chip-label">WP Sites</div></div>
-            <div class="stat-chip"><div class="stat-chip-num">14</div><div class="stat-chip-label">Repos</div></div>
-            <div class="stat-chip"><div class="stat-chip-num">923</div><div class="stat-chip-label">Commits</div></div>
+
+        <!-- README -->
+        <div class="readme-block">
+          <div class="readme-bar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+            <span style="margin-left:0.5rem;">adam-johnson / README.md</span>
           </div>
-          <h3>&#129302; AI &amp; Backend Engineering</h3>
-          <ul>
-            <li>Python backend services — FastAPI, Django, Flask at production scale</li>
-            <li>Web simulation environments for AI agent training &amp; evaluation</li>
-            <li>Scalable data pipelines, ETL systems, and distributed APIs</li>
-            <li>Browser automation frameworks using Playwright and Selenium</li>
-          </ul>
-          <h3>&#127760; WordPress &amp; eCommerce</h3>
-          <ul>
-            <li>Custom WordPress theme development from scratch — no page builders</li>
-            <li>Advanced plugin development — custom post types, REST API extensions, admin UIs</li>
-            <li>WooCommerce customization — checkout flows, payment gateways, subscription billing</li>
-            <li>Performance optimization — Core Web Vitals, caching, CDN, database tuning</li>
-            <li>Headless WordPress with React/Next.js via WP REST API &amp; WPGraphQL</li>
-            <li>Multisite network management and enterprise WordPress hosting</li>
-          </ul>
-          <h3>&#128227; Advertising &amp; Conversion</h3>
-          <ul>
-            <li>Meta Conversions API &amp; Google Ads Enhanced Conversions — server-side tracking</li>
-            <li>Google Tag Manager setup, custom triggers, and data layer implementation</li>
-            <li>Conversion rate optimization — A/B testing, landing page builds, funnel analysis</li>
-            <li>WooCommerce abandoned cart, upsell/cross-sell, and loyalty program integrations</li>
-            <li>Performance marketing dashboards connecting ad spend to real revenue data</li>
-          </ul>
-          <h3>&#128295; Core Stack</h3>
+          <div class="readme-content">
+            <div class="terminal-line">cat README.md</div>
+            <h2>👋 Hey, I'm Adam Johnson</h2>
+            <p>Senior Web Developer with <strong style="color:var(--text)">10+ years</strong> building scalable Python backends, custom WordPress solutions, WooCommerce stores, web application simulation environments, and data pipelines. Currently focused on AI agent infrastructure, eCommerce optimization, and digital advertising integrations.</p>
+
+            <div class="stat-row">
+              <div class="stat-chip">
+                <div class="stat-chip-num">10+</div>
+                <div class="stat-chip-label">Yrs Exp</div>
+              </div>
+              <div class="stat-chip">
+                <div class="stat-chip-num">10+</div>
+                <div class="stat-chip-label">Yrs Python</div>
+              </div>
+              <div class="stat-chip">
+                <div class="stat-chip-num">50+</div>
+                <div class="stat-chip-label">WP Sites</div>
+              </div>
+              <div class="stat-chip">
+                <div class="stat-chip-num">923</div>
+                <div class="stat-chip-label">Commits</div>
+              </div>
+            </div>
+
+            <h3>🤖 AI &amp; Backend Engineering</h3>
+            <ul>
+              <li>Python backend services with FastAPI, Flask, and Django</li>
+              <li>Web simulation environments for AI agent training &amp; evaluation</li>
+              <li>Scalable data pipelines and ETL infrastructure</li>
+              <li>REST/GraphQL APIs for distributed systems</li>
+              <li>Automation frameworks and browser-based testing tools</li>
+              <li>AI/ML experimentation tooling and research scaffolding</li>
+            </ul>
+
+            <h3>🌐 WordPress &amp; eCommerce</h3>
+            <ul>
+              <li>Custom WordPress theme development from scratch — no page builders</li>
+              <li>Advanced plugin development — custom post types, REST API extensions, admin UIs</li>
+              <li>WooCommerce customization — checkout flows, payment gateways, subscription billing</li>
+              <li>Performance optimization — Core Web Vitals, caching, CDN, database tuning</li>
+              <li>Headless WordPress with React/Next.js via WP REST API &amp; WPGraphQL</li>
+              <li>Multisite network management and enterprise WordPress hosting</li>
+            </ul>
+
+            <h3>📣 Advertising &amp; Conversion</h3>
+            <ul>
+              <li>Meta Conversions API &amp; Google Ads Enhanced Conversions — server-side tracking</li>
+              <li>Google Tag Manager setup, custom triggers, and data layer implementation</li>
+              <li>Conversion rate optimization — A/B testing, landing pages, funnel analysis</li>
+              <li>WooCommerce abandoned cart, upsell/cross-sell, and loyalty integrations</li>
+              <li>Performance marketing dashboards connecting ad spend to revenue data</li>
+            </ul>
+
+            <h3>🛠 Core Stack</h3>
+            <div class="tech-row">
+              <span class="tech-pill tp-blue">Python</span>
+              <span class="tech-pill tp-blue">FastAPI</span>
+              <span class="tech-pill tp-blue">Django</span>
+              <span class="tech-pill tp-blue">Flask</span>
+              <span class="tech-pill tp-yellow">WordPress</span>
+              <span class="tech-pill tp-yellow">WooCommerce</span>
+              <span class="tech-pill tp-purple">PHP</span>
+              <span class="tech-pill tp-purple">LangChain</span>
+              <span class="tech-pill tp-green">PostgreSQL</span>
+              <span class="tech-pill tp-green">MySQL</span>
+              <span class="tech-pill tp-orange">Docker</span>
+              <span class="tech-pill tp-orange">AWS</span>
+              <span class="tech-pill tp-red">Meta Pixel</span>
+              <span class="tech-pill tp-red">Playwright</span>
+            </div>
+
+            <h3>📌 Current Focus</h3>
+            <p>Building <code>webenv-sim</code> — an open-source web environment simulation framework for training AI agents to interact with complex, realistic browser environments. Includes DOM state tracking, action replay, and evaluation harnesses.</p>
+
+            <h3>📫 Let's Connect</h3>
+            <p>Open to remote-first roles in AI/ML infrastructure, WordPress development, and eCommerce engineering. East Coast hours. Reach me at <a href="mailto:hello@tradestackdev.com" style="color:var(--accent)">hello@tradestackdev.com</a> or on <a href="https://www.linkedin.com/in/adam-johnson-b35ab0306/" target="_blank" style="color:var(--accent)">LinkedIn</a>.</p>
+          </div>
+        </div>
+
+        <!-- PINNED REPOS -->
+        <div class="section-header" style="margin-top:2rem;">
+          <div class="section-icon">📌</div>
+          <div class="section-title">Pinned Repositories</div>
+        </div>
+
+        <div class="repos-grid">
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">🌐</div>
+              <div>
+                <div class="repo-name">webenv-sim</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Web environment simulation framework for AI agent training. DOM state serialization, action replay engine, multi-tab orchestration, and evaluation harness. Used to generate training data for computer-use agents.</div>
+            <div class="repo-topics">
+              <span class="topic">ai-agents</span>
+              <span class="topic">simulation</span>
+              <span class="topic">python</span>
+              <span class="topic">playwright</span>
+              <span class="topic">fastapi</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 241</div>
+              <div class="repo-meta">🍴 38</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 2d ago</div>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">⚡</div>
+              <div>
+                <div class="repo-name">fastapi-agent-scaffold</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Production-ready FastAPI scaffold for AI agent backend services. Includes async task queues, rate limiting, streaming responses, JWT auth, and OpenAI-compatible tool-calling endpoints.</div>
+            <div class="repo-topics">
+              <span class="topic">fastapi</span>
+              <span class="topic">python</span>
+              <span class="topic">async</span>
+              <span class="topic">ai-backend</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 187</div>
+              <div class="repo-meta">🍴 29</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 5d ago</div>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">🔄</div>
+              <div>
+                <div class="repo-name">pipeline-forge</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Modular Python data pipeline framework built on Apache Airflow. Supports parallel task execution, retry logic, schema validation, and pluggable connectors for 15+ data sources.</div>
+            <div class="repo-topics">
+              <span class="topic">data-pipeline</span>
+              <span class="topic">airflow</span>
+              <span class="topic">etl</span>
+              <span class="topic">python</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 132</div>
+              <div class="repo-meta">🍴 21</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1w ago</div>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">🤖</div>
+              <div>
+                <div class="repo-name">agent-eval-harness</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Evaluation framework for web-browsing AI agents. Defines task specs, success criteria, and scoring rubrics. Integrates with Playwright for live browser sessions and supports headless replay.</div>
+            <div class="repo-topics">
+              <span class="topic">evals</span>
+              <span class="topic">ai-agents</span>
+              <span class="topic">benchmark</span>
+              <span class="topic">python</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 96</div>
+              <div class="repo-meta">🍴 14</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 3d ago</div>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">🏗️</div>
+              <div>
+                <div class="repo-name">django-research-platform</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Full-stack Django platform for managing AI research experiments. Includes experiment tracking, hyperparameter logging, result dashboards, and team collaboration features.</div>
+            <div class="repo-topics">
+              <span class="topic">django</span>
+              <span class="topic">mlops</span>
+              <span class="topic">experiment-tracking</span>
+              <span class="topic">python</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 74</div>
+              <div class="repo-meta">🍴 11</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 2w ago</div>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <div class="repo-icon">🔍</div>
+              <div>
+                <div class="repo-name">dom-state-tracker</div>
+                <div class="repo-visibility">Public</div>
+              </div>
+            </div>
+            <div class="repo-desc">Real-time DOM state diffing and serialization library. Captures page mutations, user interactions, and ARIA tree snapshots for AI agent observation pipelines. Companion to webenv-sim.</div>
+            <div class="repo-topics">
+              <span class="topic">dom</span>
+              <span class="topic">browser-automation</span>
+              <span class="topic">python</span>
+              <span class="topic">javascript</span>
+            </div>
+            <div class="repo-footer">
+              <div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div>
+              <div class="repo-meta">⭐ 58</div>
+              <div class="repo-meta">🍴 9</div>
+              <div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1w ago</div>
+            </div>
+          </div>
+
+        </div><!-- /repos-grid -->
+
+      </div><!-- /main col -->
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">About</div>
+          <div class="social-links">
+            <a href="mailto:hello@tradestackdev.com" class="social-link"><span class="icon">✉️</span> hello@tradestackdev.com</a>
+            <a href="https://www.linkedin.com/in/adam-johnson-b35ab0306/" target="_blank" class="social-link"><span class="icon">🔗</span> LinkedIn — Adam Johnson</a>
+            <a href="https://github.com/TradeStackDev" target="_blank" class="social-link"><span class="icon">💻</span> github.com/TradeStackDev</a>
+            <a href="#" class="social-link"><span class="icon">📍</span> Remote — East Coast (EST)</a>
+            <a href="#" class="social-link"><span class="icon">💼</span> Open to Work</a>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">GitHub Stats</div>
+          <div class="sidebar-stat-row"><span>Total Stars</span><span>1,062 ⭐</span></div>
+          <div class="sidebar-stat-row"><span>Total Forks</span><span>190 🍴</span></div>
+          <div class="sidebar-stat-row"><span>Commits (2025)</span><span>374</span></div>
+          <div class="sidebar-stat-row"><span>PRs Merged</span><span>40</span></div>
+          <div class="sidebar-stat-row"><span>Issues Closed</span><span>97</span></div>
+          <div class="sidebar-stat-row"><span>Code Reviews</span><span>53</span></div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Language Breakdown</div>
+
+          <div class="lang-bar-item">
+            <div class="lang-bar-label"><span>Python</span><span>42%</span></div>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:42%;background:#3776ab;"></div></div>
+          </div>
+          <div class="lang-bar-item">
+            <div class="lang-bar-label"><span>PHP</span><span>28%</span></div>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:28%;background:#777bb4;"></div></div>
+          </div>
+          <div class="lang-bar-item">
+            <div class="lang-bar-label"><span>JavaScript</span><span>16%</span></div>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:16%;background:#f7df1e;"></div></div>
+          </div>
+          <div class="lang-bar-item">
+            <div class="lang-bar-label"><span>TypeScript</span><span>8%</span></div>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:8%;background:#3178c6;"></div></div>
+          </div>
+          <div class="lang-bar-item">
+            <div class="lang-bar-label"><span>SQL / Shell</span><span>6%</span></div>
+            <div class="lang-bar-track"><div class="lang-bar-fill" style="width:6%;background:#89e051;"></div></div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Relevant Frameworks</div>
           <div class="tech-row">
-            <span class="tech-pill tp-blue">Python</span>
-            <span class="tech-pill tp-blue">FastAPI</span>
-            <span class="tech-pill tp-blue">Django</span>
             <span class="tech-pill tp-yellow">WordPress</span>
             <span class="tech-pill tp-yellow">WooCommerce</span>
-            <span class="tech-pill tp-purple">PHP</span>
+            <span class="tech-pill tp-blue">FastAPI</span>
+            <span class="tech-pill tp-blue">Django</span>
+            <span class="tech-pill tp-red">Meta Ads</span>
+            <span class="tech-pill tp-red">Google Ads</span>
             <span class="tech-pill tp-purple">LangChain</span>
-            <span class="tech-pill tp-green">PostgreSQL</span>
-            <span class="tech-pill tp-green">MySQL</span>
             <span class="tech-pill tp-orange">Docker</span>
-            <span class="tech-pill tp-orange">AWS</span>
-            <span class="tech-pill tp-red">Meta Pixel</span>
+            <span class="tech-pill tp-orange">AWS ECS</span>
             <span class="tech-pill tp-red">Playwright</span>
           </div>
-          <h3>&#128235; Let's Connect</h3>
-          <p>Available for remote roles and freelance projects. East Coast hours. Reach me at <a href="mailto:hello@tradestackdev.com" style="color:var(--accent)">hello@tradestackdev.com</a> or on <a href="https://www.linkedin.com/in/adam-johnson-b35ab0306/" target="_blank" style="color:var(--accent)">LinkedIn</a>.</p>
         </div>
+
+      </div><!-- /sidebar -->
+
+    </div><!-- /layout -->
+
+  </section>
+
+  <!-- CONTRIBUTION GRAPH -->
+  <section class="contrib-section" style="padding-top:0;">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-title">Contribution Activity</div>
+    </div>
+    <div class="contrib-graph">
+      <div class="contrib-total"><strong>923 contributions</strong> in the last year</div>
+      <div class="contrib-months" id="months"></div>
+      <div class="contrib-grid-wrap">
+        <div class="contrib-days">
+          <span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span>
+        </div>
+        <div class="contrib-weeks" id="contrib-weeks"></div>
       </div>
-
-      <!-- PINNED REPOS -->
-      <div class="section-header" style="margin-top:2rem;">
-        <div class="section-icon">&#128204;</div>
-        <div class="section-title">Pinned Repositories</div>
-      </div>
-      <div class="repos-grid">
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#127760;</div><div><div class="repo-name">webenv-sim</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">Web environment simulation framework for AI agent training. DOM state serialization, action replay, multi-tab orchestration, and evaluation harness.</div>
-          <div class="repo-topics"><span class="topic">ai-agents</span><span class="topic">simulation</span><span class="topic">python</span><span class="topic">playwright</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 241</div><div class="repo-meta">&#127828; 38</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">2d ago</div></div>
-        </div>
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#128268;</div><div><div class="repo-name">wp-plugin-boilerplate-pro</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">Production-ready WordPress plugin boilerplate. OOP architecture, custom REST API endpoints, admin settings UI, WP-CLI commands, and PHPUnit test suite.</div>
-          <div class="repo-topics"><span class="topic">wordpress</span><span class="topic">php</span><span class="topic">plugin-dev</span><span class="topic">rest-api</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 198</div><div class="repo-meta">&#127828; 44</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">3d ago</div></div>
-        </div>
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#128722;</div><div><div class="repo-name">woo-conversion-suite</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">WooCommerce plugin suite for revenue optimization. Abandoned cart recovery, one-click upsells, loyalty points, and A/B testing for product pages.</div>
-          <div class="repo-topics"><span class="topic">woocommerce</span><span class="topic">ecommerce</span><span class="topic">php</span><span class="topic">conversion</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 163</div><div class="repo-meta">&#127828; 31</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">1w ago</div></div>
-        </div>
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#128227;</div><div><div class="repo-name">ads-tracking-toolkit</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">Server-side tracking for Meta Conversions API and Google Ads Enhanced Conversions. WordPress plugin + Python backend for cookieless, reliable attribution.</div>
-          <div class="repo-topics"><span class="topic">meta-pixel</span><span class="topic">google-ads</span><span class="topic">tracking</span><span class="topic">wordpress</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 142</div><div class="repo-meta">&#127828; 27</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">4d ago</div></div>
-        </div>
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#9889;</div><div><div class="repo-name">fastapi-agent-scaffold</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">Production-ready FastAPI scaffold for AI agent backend services. Async task queues, SSE streaming, tool-calling endpoints, JWT auth, and rate limiting.</div>
-          <div class="repo-topics"><span class="topic">fastapi</span><span class="topic">python</span><span class="topic">async</span><span class="topic">ai-backend</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 187</div><div class="repo-meta">&#127828; 29</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">5d ago</div></div>
-        </div>
-
-        <div class="repo-card">
-          <div class="repo-header"><div class="repo-icon">&#127381;</div><div><div class="repo-name">headless-wp-starter</div><div class="repo-visibility">Public</div></div></div>
-          <div class="repo-desc">Headless WordPress + Next.js starter kit. WPGraphQL backend, ISR, custom Gutenberg blocks, preview mode, and Vercel-ready deployment config.</div>
-          <div class="repo-topics"><span class="topic">wordpress</span><span class="topic">nextjs</span><span class="topic">headless</span><span class="topic">typescript</span></div>
-          <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-ts"></span> TypeScript</div><div class="repo-meta">&#11088; 87</div><div class="repo-meta">&#127828; 19</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">2w ago</div></div>
-        </div>
-
+      <div class="contrib-legend">
+        Less
+        <div class="contrib-day c0"></div>
+        <div class="contrib-day c1"></div>
+        <div class="contrib-day c2"></div>
+        <div class="contrib-day c3"></div>
+        <div class="contrib-day c4"></div>
+        More
       </div>
     </div>
+  </section>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">About</div>
-        <div class="social-links">
-          <a href="mailto:hello@tradestackdev.com" class="social-link"><span>&#9993;&#65039;</span> hello@tradestackdev.com</a>
-          <a href="https://www.linkedin.com/in/adam-johnson-b35ab0306/" target="_blank" class="social-link"><span>&#128279;</span> LinkedIn — Adam Johnson</a>
-          <a href="https://github.com/TradeStackDev" target="_blank" class="social-link"><span>&#128187;</span> github.com/TradeStackDev</a>
-          <a href="#" class="social-link"><span>&#128205;</span> Remote — East Coast (EST)</a>
-          <a href="#" class="social-link"><span>&#128188;</span> Open to Work</a>
-        </div>
-      </div>
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">GitHub Stats</div>
-        <div class="sidebar-stat-row"><span>Total Stars</span><span>1,062 &#11088;</span></div>
-        <div class="sidebar-stat-row"><span>Total Forks</span><span>190 &#127828;</span></div>
-        <div class="sidebar-stat-row"><span>Commits (2025)</span><span>374</span></div>
-        <div class="sidebar-stat-row"><span>PRs Merged</span><span>40</span></div>
-        <div class="sidebar-stat-row"><span>Issues Closed</span><span>97</span></div>
-        <div class="sidebar-stat-row"><span>Code Reviews</span><span>53</span></div>
-      </div>
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">Language Breakdown</div>
-        <div class="lang-bar-item"><div class="lang-bar-label"><span>Python</span><span>42%</span></div><div class="lang-bar-track"><div class="lang-bar-fill" style="width:42%;background:#3776ab;"></div></div></div>
-        <div class="lang-bar-item"><div class="lang-bar-label"><span>PHP</span><span>30%</span></div><div class="lang-bar-track"><div class="lang-bar-fill" style="width:30%;background:#777bb4;"></div></div></div>
-        <div class="lang-bar-item"><div class="lang-bar-label"><span>JavaScript</span><span>16%</span></div><div class="lang-bar-track"><div class="lang-bar-fill" style="width:16%;background:#f7df1e;"></div></div></div>
-        <div class="lang-bar-item"><div class="lang-bar-label"><span>TypeScript</span><span>8%</span></div><div class="lang-bar-track"><div class="lang-bar-fill" style="width:8%;background:#3178c6;"></div></div></div>
-        <div class="lang-bar-item"><div class="lang-bar-label"><span>SQL / Shell</span><span>4%</span></div><div class="lang-bar-track"><div class="lang-bar-fill" style="width:4%;background:#89e051;"></div></div></div>
-      </div>
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">Specializations</div>
-        <div class="tech-row">
-          <span class="tech-pill tp-yellow">WordPress</span>
-          <span class="tech-pill tp-yellow">WooCommerce</span>
-          <span class="tech-pill tp-blue">FastAPI</span>
-          <span class="tech-pill tp-blue">Django</span>
-          <span class="tech-pill tp-red">Meta Ads</span>
-          <span class="tech-pill tp-red">Google Ads</span>
-          <span class="tech-pill tp-purple">AI Agents</span>
-          <span class="tech-pill tp-orange">AWS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
+</div>
 
-<!-- CONTRIBUTION GRAPH -->
-<section style="padding-top:0;">
-  <div class="section-header"><div class="section-icon">&#128202;</div><div class="section-title">Contribution Activity</div></div>
-  <div class="contrib-graph">
-    <div class="contrib-total"><strong>923 contributions</strong> in the last year</div>
-    <div class="contrib-months" id="months"></div>
-    <div class="contrib-grid-wrap">
-      <div class="contrib-days"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span></div>
-      <div class="contrib-weeks" id="contrib-weeks"></div>
-    </div>
-    <div class="contrib-legend">Less <div class="contrib-day c0"></div><div class="contrib-day c1"></div><div class="contrib-day c2"></div><div class="contrib-day c3"></div><div class="contrib-day c4"></div> More</div>
-  </div>
-</section>
-</div></div>
-
-<!-- ══ REPOSITORIES ══ -->
+<!-- ══ REPOSITORIES TAB ══ -->
 <div id="tab-repositories" class="tab-content">
-<div class="container"><section>
-  <div class="section-header"><div class="section-icon">&#128193;</div><div class="section-title">All Repositories</div><span class="section-count">14 public</span></div>
-  <div style="display:flex;flex-direction:column;gap:0.75rem;">
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#127760;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">webenv-sim</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Web environment simulation framework for AI agent training. DOM state serialization, action replay, multi-tab orchestration, and evaluation harness.</div>
-      <div class="repo-topics"><span class="topic">ai-agents</span><span class="topic">simulation</span><span class="topic">python</span><span class="topic">playwright</span><span class="topic">fastapi</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 241</div><div class="repo-meta">&#127828; 38</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">2d ago</div></div>
+<div class="container">
+  <section>
+    <div class="section-header">
+      <div class="section-icon">📁</div>
+      <div class="section-title">All Repositories</div>
+      <span class="section-count">14 public</span>
     </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;">
 
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128268;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">wp-plugin-boilerplate-pro</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Production-ready WordPress plugin boilerplate with OOP architecture, custom REST API endpoints, admin settings UI, WP-CLI commands, and PHPUnit test suite.</div>
-      <div class="repo-topics"><span class="topic">wordpress</span><span class="topic">php</span><span class="topic">plugin-dev</span><span class="topic">rest-api</span><span class="topic">phpunit</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 198</div><div class="repo-meta">&#127828; 44</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">3d ago</div></div>
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🌐</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">webenv-sim</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Web environment simulation framework for AI agent training. DOM state serialization, action replay, multi-tab orchestration, eval harness.</div><div class="repo-topics"><span class="topic">ai-agents</span><span class="topic">simulation</span><span class="topic">python</span><span class="topic">playwright</span><span class="topic">fastapi</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 241</div><div class="repo-meta">🍴 38</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 2d ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🔌</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">wp-plugin-boilerplate-pro</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Production-ready WordPress plugin boilerplate. OOP architecture, custom REST API endpoints, admin settings UI, WP-CLI commands, and PHPUnit test suite.</div><div class="repo-topics"><span class="topic">wordpress</span><span class="topic">php</span><span class="topic">plugin-dev</span><span class="topic">rest-api</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">⭐ 198</div><div class="repo-meta">🍴 44</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 3d ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🛒</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">woo-conversion-suite</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">WooCommerce plugin suite for revenue optimization. Abandoned cart recovery, one-click upsells, loyalty points, and A/B tested product pages.</div><div class="repo-topics"><span class="topic">woocommerce</span><span class="topic">ecommerce</span><span class="topic">php</span><span class="topic">conversion</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">⭐ 163</div><div class="repo-meta">🍴 31</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">📣</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">ads-tracking-toolkit</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Server-side tracking for Meta Conversions API and Google Ads Enhanced Conversions. WordPress plugin + Python backend for reliable, cookieless attribution.</div><div class="repo-topics"><span class="topic">meta-pixel</span><span class="topic">google-ads</span><span class="topic">tracking</span><span class="topic">wordpress</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">⭐ 142</div><div class="repo-meta">🍴 27</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 4d ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">⚡</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">fastapi-agent-scaffold</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Production-ready FastAPI scaffold for AI agent backend services with streaming, tool-calling endpoints, async task queues.</div><div class="repo-topics"><span class="topic">fastapi</span><span class="topic">python</span><span class="topic">async</span><span class="topic">ai-backend</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 187</div><div class="repo-meta">🍴 29</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 5d ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🤖</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">agent-eval-harness</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Evaluation framework for web-browsing AI agents. Task specs, success criteria scoring, live Playwright sessions, headless replay.</div><div class="repo-topics"><span class="topic">evals</span><span class="topic">ai-agents</span><span class="topic">benchmark</span><span class="topic">python</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 96</div><div class="repo-meta">🍴 14</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 3d ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🔄</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">pipeline-forge</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Modular Python data pipeline framework on Apache Airflow. Parallel execution, retry logic, schema validation, 15+ connectors.</div><div class="repo-topics"><span class="topic">data-pipeline</span><span class="topic">airflow</span><span class="topic">etl</span><span class="topic">python</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 132</div><div class="repo-meta">🍴 21</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🏗️</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">django-research-platform</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Full-stack Django platform for AI research experiment management, hyperparameter logging, result dashboards, team collaboration.</div><div class="repo-topics"><span class="topic">django</span><span class="topic">mlops</span><span class="topic">experiment-tracking</span><span class="topic">python</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 74</div><div class="repo-meta">🍴 11</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 2w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🔍</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">dom-state-tracker</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Real-time DOM diffing and serialization library. Captures page mutations, user interactions, ARIA snapshots for AI agent pipelines.</div><div class="repo-topics"><span class="topic">dom</span><span class="topic">browser-automation</span><span class="topic">python</span><span class="topic">javascript</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 58</div><div class="repo-meta">🍴 9</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🎨</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">headless-wp-starter</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Headless WordPress + Next.js starter kit. WPGraphQL backend, ISR, custom Gutenberg blocks, preview mode, and Vercel-ready deployment.</div><div class="repo-topics"><span class="topic">wordpress</span><span class="topic">nextjs</span><span class="topic">headless</span><span class="topic">wpgraphql</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-ts"></span> TypeScript</div><div class="repo-meta">⭐ 87</div><div class="repo-meta">🍴 19</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 2w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">💳</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">woo-subscriptions-engine</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Custom WooCommerce subscription billing engine. Stripe integration, prorated upgrades, dunning management, and analytics dashboard.</div><div class="repo-topics"><span class="topic">woocommerce</span><span class="topic">subscriptions</span><span class="topic">stripe</span><span class="topic">php</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">⭐ 61</div><div class="repo-meta">🍴 12</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 3w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">📊</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">ad-revenue-dashboard</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Python + React dashboard connecting Meta Ads, Google Ads, and WooCommerce revenue. ROAS tracking, cohort analysis, and spend alerts.</div><div class="repo-topics"><span class="topic">meta-ads</span><span class="topic">google-ads</span><span class="topic">analytics</span><span class="topic">python</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 49</div><div class="repo-meta">🍴 8</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 1mo ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">🧪</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">browser-task-bench</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Benchmark suite of 200+ web tasks for AI agent evaluation. Forms, navigation, search, authentication, and multi-step flows.</div><div class="repo-topics"><span class="topic">benchmark</span><span class="topic">ai</span><span class="topic">browser</span><span class="topic">testing</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 44</div><div class="repo-meta">🍴 7</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 3w ago</div></div></div>
+
+      <div class="repo-card" style="border-radius:8px;"><div class="repo-header"><div class="repo-icon">☁️</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">aws-ml-infra</div><div class="repo-visibility">Public</div></div></div></div><div class="repo-desc">Terraform + CDK modules for deploying ML training jobs on AWS ECS Fargate. Auto-scaling, spot instance support, S3 artifact management.</div><div class="repo-topics"><span class="topic">aws</span><span class="topic">terraform</span><span class="topic">mlops</span><span class="topic">infrastructure</span></div><div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">⭐ 15</div><div class="repo-meta">🍴 2</div><div class="repo-meta" style="margin-left:auto;color:var(--muted);font-size:0.65rem;">Updated 6w ago</div></div></div>
+
     </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128722;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">woo-conversion-suite</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">WooCommerce plugin suite for revenue optimization. Abandoned cart recovery, dynamic upsells, one-click post-purchase funnels, loyalty points, and A/B tested product pages.</div>
-      <div class="repo-topics"><span class="topic">woocommerce</span><span class="topic">ecommerce</span><span class="topic">php</span><span class="topic">conversion</span><span class="topic">wordpress</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 163</div><div class="repo-meta">&#127828; 31</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">1w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128227;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">ads-tracking-toolkit</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Server-side tracking for Meta Conversions API and Google Ads Enhanced Conversions. WordPress plugin + Python backend for cookieless, reliable ad attribution.</div>
-      <div class="repo-topics"><span class="topic">meta-pixel</span><span class="topic">google-ads</span><span class="topic">server-side-tracking</span><span class="topic">wordpress</span><span class="topic">python</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 142</div><div class="repo-meta">&#127828; 27</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">4d ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#9889;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">fastapi-agent-scaffold</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Production-ready FastAPI scaffold for AI agent backend services. SSE streaming, tool-calling endpoints, async task queues, JWT auth, and rate limiting.</div>
-      <div class="repo-topics"><span class="topic">fastapi</span><span class="topic">python</span><span class="topic">async</span><span class="topic">ai-backend</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 187</div><div class="repo-meta">&#127828; 29</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">5d ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#129302;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">agent-eval-harness</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Evaluation framework for web-browsing AI agents. Task specs in YAML, success criteria scoring, live Playwright sessions, and headless replay.</div>
-      <div class="repo-topics"><span class="topic">evals</span><span class="topic">ai-agents</span><span class="topic">benchmark</span><span class="topic">python</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 96</div><div class="repo-meta">&#127828; 14</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">3d ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#127381;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">headless-wp-starter</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Headless WordPress + Next.js starter kit. WPGraphQL backend, ISR, custom Gutenberg blocks, preview mode, and Vercel-ready deployment.</div>
-      <div class="repo-topics"><span class="topic">wordpress</span><span class="topic">nextjs</span><span class="topic">headless</span><span class="topic">wpgraphql</span><span class="topic">typescript</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-ts"></span> TypeScript</div><div class="repo-meta">&#11088; 87</div><div class="repo-meta">&#127828; 19</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">2w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128260;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">pipeline-forge</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Modular Python data pipeline framework on Apache Airflow. Parallel execution, retry logic, Pydantic schema validation, and 15+ pluggable connectors.</div>
-      <div class="repo-topics"><span class="topic">data-pipeline</span><span class="topic">airflow</span><span class="topic">etl</span><span class="topic">python</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 132</div><div class="repo-meta">&#127828; 21</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">1w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128202;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">ad-revenue-dashboard</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Python + React dashboard connecting Meta Ads, Google Ads, and WooCommerce revenue. ROAS tracking, cohort analysis, and automated spend alerts.</div>
-      <div class="repo-topics"><span class="topic">meta-ads</span><span class="topic">google-ads</span><span class="topic">analytics</span><span class="topic">python</span><span class="topic">react</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 49</div><div class="repo-meta">&#127828; 8</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">1mo ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128179;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">woo-subscriptions-engine</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Custom WooCommerce subscription billing engine. Stripe integration, prorated upgrades/downgrades, dunning management, and analytics dashboard.</div>
-      <div class="repo-topics"><span class="topic">woocommerce</span><span class="topic">subscriptions</span><span class="topic">stripe</span><span class="topic">php</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-php"></span> PHP</div><div class="repo-meta">&#11088; 61</div><div class="repo-meta">&#127828; 12</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">3w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#127959;&#65039;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">django-research-platform</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Full-stack Django platform for AI research experiment management. Real-time dashboards, hyperparameter logging, artifact storage, and team collaboration.</div>
-      <div class="repo-topics"><span class="topic">django</span><span class="topic">mlops</span><span class="topic">experiment-tracking</span><span class="topic">python</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 74</div><div class="repo-meta">&#127828; 11</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">2w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#128269;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">dom-state-tracker</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Real-time DOM diffing and serialization library. Captures page mutations, user interactions, and ARIA snapshots for AI agent observation pipelines.</div>
-      <div class="repo-topics"><span class="topic">dom</span><span class="topic">browser-automation</span><span class="topic">python</span><span class="topic">javascript</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 58</div><div class="repo-meta">&#127828; 9</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">1w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#129514;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">browser-task-bench</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Benchmark suite of 200+ web tasks for AI agent evaluation. Forms, navigation, search, authentication, and multi-step checkout flows.</div>
-      <div class="repo-topics"><span class="topic">benchmark</span><span class="topic">ai</span><span class="topic">browser</span><span class="topic">testing</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 44</div><div class="repo-meta">&#127828; 7</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">3w ago</div></div>
-    </div>
-
-    <div class="repo-list-item">
-      <div class="repo-header"><div class="repo-icon">&#9925;</div><div style="flex:1"><div style="display:flex;align-items:center;gap:0.75rem;"><div class="repo-name">aws-ml-infra</div><div class="repo-visibility">Public</div></div></div></div>
-      <div class="repo-desc">Terraform + CDK modules for ML training jobs on AWS ECS Fargate. Auto-scaling, spot instance support, and S3 artifact management.</div>
-      <div class="repo-topics"><span class="topic">aws</span><span class="topic">terraform</span><span class="topic">mlops</span><span class="topic">infrastructure</span></div>
-      <div class="repo-footer"><div class="repo-lang"><span class="lang-dot lang-python"></span> Python</div><div class="repo-meta">&#11088; 15</div><div class="repo-meta">&#127828; 2</div><div class="repo-meta" style="margin-left:auto;font-size:0.65rem;">6w ago</div></div>
-    </div>
-
-  </div>
-</section></div>
+  </section>
+</div>
 </div>
 
-<!-- ══ ACTIVITY ══ -->
+<!-- ══ ACTIVITY TAB ══ -->
 <div id="tab-activity" class="tab-content">
-<div class="container"><section>
-  <div class="section-header"><div class="section-icon">&#9889;</div><div class="section-title">Recent Activity</div></div>
-  <div class="readme-block">
-    <div class="readme-bar"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div><span style="margin-left:0.5rem;">Activity Feed</span></div>
-    <div style="padding:1rem 1.25rem;">
-      <div class="activity-feed">
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">3 commits</span> to <span class="repo-hl">webenv-sim</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: add multi-tab session orchestration with shared state bus</div></div>
-          <div class="activity-time">2 hours ago</div>
+<div class="container">
+  <section>
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title">Recent Activity</div>
+    </div>
+    <div class="readme-block">
+      <div class="readme-bar">
+        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+        <span style="margin-left:0.5rem;">Activity Feed</span>
+      </div>
+      <div style="padding:1rem 1.25rem;">
+        <div class="activity-feed">
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">3 commits</span> to <span class="repo-hl">webenv-sim</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: add multi-tab session orchestration with shared state bus</div></div><div class="activity-time">2 hours ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">4 commits</span> to <span class="repo-hl">ads-tracking-toolkit</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: Meta CAPI server-side event deduplication + test coverage</div></div><div class="activity-time">Yesterday</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Opened <span class="hl">Pull Request #31</span> in <span class="repo-hl">woo-conversion-suite</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: one-click post-purchase upsell with Stripe payment intent reuse</div></div><div class="activity-time">2 days ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">5 commits</span> to <span class="repo-hl">fastapi-agent-scaffold</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: streaming tool-call responses + SSE endpoint</div></div><div class="activity-time">3 days ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Merged <span class="hl">PR #18</span> in <span class="repo-hl">wp-plugin-boilerplate-pro</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: WP-CLI scaffolding commands for custom post types and taxonomies</div></div><div class="activity-time">4 days ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">2 commits</span> to <span class="repo-hl">dom-state-tracker</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">perf: reduce DOM snapshot payload size by 40% with diff compression</div></div><div class="activity-time">5 days ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Closed <span class="hl">Issue #54</span> in <span class="repo-hl">woo-subscriptions-engine</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">fix: proration calculation error on mid-cycle plan upgrades</div></div><div class="activity-time">1 week ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">6 commits</span> to <span class="repo-hl">headless-wp-starter</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: custom Gutenberg blocks with ACF + WPGraphQL fragment support</div></div><div class="activity-time">1 week ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Pushed <span class="hl">3 commits</span> to <span class="repo-hl">ad-revenue-dashboard</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: Google Ads Enhanced Conversions reconciliation report</div></div><div class="activity-time">2 weeks ago</div></div>
+          <div class="activity-item"><div class="activity-avatar">AJ</div><div class="activity-content">Merged <span class="hl">PR #41</span> in <span class="repo-hl">pipeline-forge</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">fix: retry logic with exponential backoff on transient failures</div></div><div class="activity-time">2 weeks ago</div></div>
         </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">4 commits</span> to <span class="repo-hl">ads-tracking-toolkit</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: Meta CAPI server-side event deduplication + test coverage</div></div>
-          <div class="activity-time">Yesterday</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Opened <span class="hl">Pull Request #31</span> in <span class="repo-hl">woo-conversion-suite</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: one-click post-purchase upsell with Stripe payment intent reuse</div></div>
-          <div class="activity-time">2 days ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">5 commits</span> to <span class="repo-hl">fastapi-agent-scaffold</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: streaming tool-call responses + SSE endpoint</div></div>
-          <div class="activity-time">3 days ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Merged <span class="hl">PR #18</span> in <span class="repo-hl">wp-plugin-boilerplate-pro</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: WP-CLI scaffolding commands for custom post types and taxonomies</div></div>
-          <div class="activity-time">4 days ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">2 commits</span> to <span class="repo-hl">dom-state-tracker</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">perf: reduce DOM snapshot payload size by 40% with diff compression</div></div>
-          <div class="activity-time">5 days ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Closed <span class="hl">Issue #54</span> in <span class="repo-hl">woo-subscriptions-engine</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">fix: proration calculation error on mid-cycle plan upgrades</div></div>
-          <div class="activity-time">1 week ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">6 commits</span> to <span class="repo-hl">headless-wp-starter</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: custom Gutenberg blocks with ACF + WPGraphQL fragment support</div></div>
-          <div class="activity-time">1 week ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Pushed <span class="hl">3 commits</span> to <span class="repo-hl">ad-revenue-dashboard</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">feat: Google Ads Enhanced Conversions reconciliation report</div></div>
-          <div class="activity-time">2 weeks ago</div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-avatar">AJ</div>
-          <div class="activity-content">Merged <span class="hl">PR #41</span> in <span class="repo-hl">pipeline-forge</span><div style="color:var(--muted);font-size:0.7rem;margin-top:0.2rem;font-style:italic;">fix: retry logic with exponential backoff on transient failures</div></div>
-          <div class="activity-time">2 weeks ago</div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section></div>
+  </section>
+</div>
 </div>
 
-<!-- ══ SKILLS ══ -->
+<!-- ══ SKILLS TAB ══ -->
 <div id="tab-skills" class="tab-content">
-<div class="container"><section>
-  <div class="section-header"><div class="section-icon">&#128295;</div><div class="section-title">Skills &amp; Expertise</div></div>
-  <div class="skills-grid">
-
-    <div class="skill-group">
-      <div class="skill-group-title">WordPress Dev</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>Plugin Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
-        <div class="skill-item"><span>Theme Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div>
-        <div class="skill-item"><span>WP REST API</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
-        <div class="skill-item"><span>Gutenberg Blocks</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-        <div class="skill-item"><span>Headless WP</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
-      </div>
+<div class="container">
+  <section>
+    <div class="section-header">
+      <div class="section-icon">🛠</div>
+      <div class="section-title">Skills & Expertise</div>
     </div>
+    <div class="skills-grid">
 
-    <div class="skill-group">
-      <div class="skill-group-title">eCommerce</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>WooCommerce</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
-        <div class="skill-item"><span>Stripe / Payments</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
-        <div class="skill-item"><span>Subscriptions</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-        <div class="skill-item"><span>Checkout Funnels</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
-        <div class="skill-item"><span>Cart Abandonment</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div>
+      <div class="skill-group">
+        <div class="skill-group-title">WordPress Dev</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Plugin Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:98%"></div></div></div>
+          <div class="skill-item"><span>Theme Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:96%"></div></div></div>
+          <div class="skill-item"><span>WP REST API</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
+          <div class="skill-item"><span>Gutenberg Blocks</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>Headless WP</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+        </div>
       </div>
-    </div>
 
-    <div class="skill-group">
-      <div class="skill-group-title">Advertising</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>Meta Conversions API</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
-        <div class="skill-item"><span>Google Ads / GTM</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
-        <div class="skill-item"><span>Server-Side Tracking</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-        <div class="skill-item"><span>A/B Testing / CRO</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
-        <div class="skill-item"><span>ROAS Dashboards</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+      <div class="skill-group">
+        <div class="skill-group-title">eCommerce</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>WooCommerce</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:98%"></div></div></div>
+          <div class="skill-item"><span>Stripe / Payments</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span>Subscriptions</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>Checkout Funnels</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+          <div class="skill-item"><span>Cart Abandonment</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+        </div>
       </div>
-    </div>
 
-    <div class="skill-group">
-      <div class="skill-group-title">Python Backend</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>FastAPI</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
-        <div class="skill-item"><span>Django</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
-        <div class="skill-item"><span>Flask</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
-        <div class="skill-item"><span>Async / asyncio</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-        <div class="skill-item"><span>Data Pipelines</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div>
+      <div class="skill-group">
+        <div class="skill-group-title">Advertising</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Meta Conversions API</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div>
+          <div class="skill-item"><span>Google Ads / GTM</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span>Server-Side Tracking</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>A/B Testing / CRO</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span>ROAS Dashboards</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:84%"></div></div></div>
+        </div>
       </div>
-    </div>
 
-    <div class="skill-group">
-      <div class="skill-group-title">AI / Agent Systems</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>LangChain</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
-        <div class="skill-item"><span>Tool-calling APIs</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
-        <div class="skill-item"><span>Web Simulation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
-        <div class="skill-item"><span>Playwright</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
-        <div class="skill-item"><span>Agent Evals</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+      <div class="skill-group">
+        <div class="skill-group-title">Python Backend</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>FastAPI</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
+          <div class="skill-item"><span>Django</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span>Flask</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>Async / asyncio</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span>Pydantic</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+        </div>
       </div>
-    </div>
 
-    <div class="skill-group">
-      <div class="skill-group-title">Cloud &amp; DevOps</div>
-      <div class="skill-list">
-        <div class="skill-item"><span>AWS (ECS, S3, Lambda)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
-        <div class="skill-item"><span>Docker / Compose</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
-        <div class="skill-item"><span>GitHub Actions</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-        <div class="skill-item"><span>WP Engine / Kinsta</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div>
-        <div class="skill-item"><span>Cloudflare</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / Agent Systems</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>LangChain</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+          <div class="skill-item"><span>Tool-calling APIs</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>Agent Evals</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span>Web Simulation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span>PyTorch (basics)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+        </div>
       </div>
-    </div>
 
-  </div>
-</section></div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data Pipelines</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Apache Airflow</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span>SQLAlchemy</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>PostgreSQL</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div>
+          <div class="skill-item"><span>Redis / Celery</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span>Pandas / Polars</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Browser Automation</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>Playwright</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+          <div class="skill-item"><span>Selenium</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span>DOM Parsing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>BeautifulSoup</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+          <div class="skill-item"><span>CDP Protocol</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud & DevOps</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>AWS (ECS, S3, Lambda)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span>Docker / Compose</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span>GitHub Actions</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span>Terraform</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+          <div class="skill-item"><span>Prometheus / Grafana</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">APIs & Architecture</div>
+        <div class="skill-list">
+          <div class="skill-item"><span>REST API Design</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
+          <div class="skill-item"><span>GraphQL</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+          <div class="skill-item"><span>WebSockets / SSE</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+          <div class="skill-item"><span>OpenAPI / Swagger</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span>Microservices</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
 </div>
 
 <script>
-function switchTab(tab, el) {
-  document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
-  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
-  document.getElementById('tab-' + tab).classList.add('active');
-  el.classList.add('active');
-}
-
-function generateContrib() {
-  var weeksEl = document.getElementById('contrib-weeks');
-  var monthsEl = document.getElementById('months');
-  var baseActivity = [0,1,2,3,4,5,4,3,2,1,0,0,1,2,3,4,4,3,2,1,0,1,2,4,5,4,3,2,1,0,0,1,3,4,5,5,4,3,2,1,0,1,2,3,3,4,4,3,2,1,0,1];
-  for (var w = 0; w < 52; w++) {
-    var week = document.createElement('div');
-    week.className = 'contrib-week';
-    for (var d = 0; d < 7; d++) {
-      var cell = document.createElement('div');
-      cell.className = 'contrib-day';
-      var base = baseActivity[w] || 0;
-      var isWeekend = (d === 0 || d === 6);
-      var lvl = 0;
-      var r = Math.random();
-      if (isWeekend) { lvl = r < 0.3 ? Math.floor(Math.random() * 2) : 0; }
-      else if (base >= 4) { lvl = r < 0.6 ? 4 : r < 0.8 ? 3 : r < 0.95 ? 2 : 0; }
-      else if (base >= 3) { lvl = r < 0.4 ? 3 : r < 0.7 ? 2 : r < 0.9 ? 1 : 0; }
-      else if (base >= 2) { lvl = r < 0.3 ? 2 : r < 0.6 ? 1 : 0; }
-      else if (base >= 1) { lvl = r < 0.4 ? 1 : 0; }
-      cell.classList.add('c' + lvl);
-      week.appendChild(cell);
-    }
-    weeksEl.appendChild(week);
+  function switchTab(tab) {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelector(`#tab-${tab}`).classList.add('active');
+    event.target.classList.add('active');
   }
-  var monthNames = ['Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May'];
-  monthNames.forEach(function(m) {
-    var s = document.createElement('span');
-    s.textContent = m;
-    monthsEl.appendChild(s);
-  });
-}
-generateContrib();
+
+  // Generate contribution graph
+  function generateContrib() {
+    const weeksEl = document.getElementById('contrib-weeks');
+    const monthsEl = document.getElementById('months');
+    const weeks = 52;
+    const days = 7;
+
+    // Patterns to look "real" — heavier on weekdays, some hot streaks
+    const baseActivity = [0,1,2,3,4,5,4,3,2,1,0,0,1,2,3,4,4,3,2,1,0,1,2,4,5,4,3,2,1,0,
+                          0,1,3,4,5,5,4,3,2,1,0,1,2,3,3,4,4,3,2,1,0,1];
+
+    for (let w = 0; w < weeks; w++) {
+      const week = document.createElement('div');
+      week.className = 'contrib-week';
+      for (let d = 0; d < days; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'contrib-day';
+        const base = baseActivity[w] || 0;
+        const isWeekend = d === 0 || d === 6;
+        let lvl = 0;
+        if (isWeekend) {
+          lvl = Math.random() < 0.3 ? Math.floor(Math.random() * 2) : 0;
+        } else {
+          const r = Math.random();
+          if (base >= 4) lvl = r < 0.6 ? 4 : r < 0.8 ? 3 : r < 0.95 ? 2 : 0;
+          else if (base >= 3) lvl = r < 0.4 ? 3 : r < 0.7 ? 2 : r < 0.9 ? 1 : 0;
+          else if (base >= 2) lvl = r < 0.3 ? 2 : r < 0.6 ? 1 : 0;
+          else if (base >= 1) lvl = r < 0.4 ? 1 : 0;
+        }
+        cell.classList.add(`c${lvl}`);
+        week.appendChild(cell);
+      }
+      weeksEl.appendChild(week);
+    }
+
+    // Month labels
+    const monthNames = ['Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May'];
+    monthNames.forEach(m => {
+      const s = document.createElement('span');
+      s.textContent = m;
+      s.style.minWidth = (52/12*13)+'px';
+      monthsEl.appendChild(s);
+    });
+  }
+
+  generateContrib();
 </script>
 </body>
 </html>
